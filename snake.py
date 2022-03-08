@@ -24,6 +24,13 @@ class Snake:
         sq.goto(position)
         self.squares.append(sq)
 
+    def reset(self):
+        for sq in self.squares:
+            sq.goto(1000, 1000)   #jinak by nám staří hadi zůstavaly na obrazovce - bez té for loop
+        self.squares.clear() #vymaže celý list
+        self.create_snake() #znovu vše od začátku
+
+
 
     def extend(self):
         """add a square to a snake"""

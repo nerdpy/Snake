@@ -2,13 +2,16 @@
 druhý čtverec na pozici prvního a první na pozici nula"""
 from snake import Snake
 import time
-from turtle import Screen, _CFG
+from turtle import Screen
 from food import Food
 from score_board import ScoreBoard
+import turtle
 
 
 screen = Screen()
-# screen.setup(width=200, height=200)
+screen.setup(width=420, height=420)
+
+
 screen.bgcolor("black")
 screen.title("HAD")
 screen.tracer(0) # automatický update je vypnutý
@@ -37,13 +40,14 @@ while game_is_on:
 
     #detect collision with wall
     if snake.squares[0].xcor() > 190 or snake.squares[0].xcor() < -190 or snake.squares[0].ycor() > 190 or snake.squares[0].ycor() < -190:
-        game_is_on = False
-        score_board.game_over()
-
+        score_board.reset()
+        snake.reset()
     #detect collision with the tail
     #if the first square collide with any segment of the tail
-    for square in snake.squares:  #pro každý čtvereček ze čtverečků z hadů
-        if snake.squares[0].distance()
+    for square in snake.squares[1:]:  #pro každý čtvereček ze čtverečků z hadů,které není ten první[0]
+        if snake.squares[0].distance(square) < 10:
+            score_board.reset()
+            snake.reset()
 
 
 
